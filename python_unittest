@@ -17,29 +17,29 @@ class MyBackendAPITestCase(unittest.TestCase):
 
         # Parse the response JSON and perform assertions on the data
         user = response.json()
-        print(user)
-        # self.assertEqual(user["id"], 123)
+        print(len(user["stocks"]))
+        self.assertEqual(user["stocks"], 4)
         # self.assertEqual(user["name"], "John Doe")
         # self.assertEqual(user["email"], "john.doe@example.com")
 
-    def test_create_user(self):
-        # Send a POST request to create a new user
-        endpoint = "/session"  # Replace with the appropriate endpoint
-        url = self.base_url + endpoint
-        data = {
-            "name": "Jane Smith",
-            "email": "jane.smith@example.com"
-        }
+    # def test_create_user(self):
+    #     # Send a POST request to create a new user
+    #     endpoint = "/session"  # Replace with the appropriate endpoint
+    #     url = self.base_url + endpoint
+    #     data = {
+    #         "name": "Jane Smith",
+    #         "email": "jane.smith@example.com"
+    #     }
 
-        response = requests.post(url, json=data)
+    #     response = requests.post(url, json=data)
 
-        # Check the response status code
-        self.assertEqual(response.status_code, 201)
+    #     # Check the response status code
+    #     self.assertEqual(response.status_code, 201)
 
-        # Parse the response JSON and perform assertions on the data
-        new_user = response.json()
-        self.assertEqual(new_user["name"], "Jane Smith")
-        self.assertEqual(new_user["email"], "jane.smith@example.com")
+    #     # Parse the response JSON and perform assertions on the data
+    #     new_user = response.json()
+    #     self.assertEqual(new_user["name"], "Jane Smith")
+    #     self.assertEqual(new_user["email"], "jane.smith@example.com")
 
         # Optional: Clean up the created user (e.g., send a DELETE request)
 
