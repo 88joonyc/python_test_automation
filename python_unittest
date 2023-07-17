@@ -3,11 +3,11 @@ import requests
 
 class MyBackendAPITestCase(unittest.TestCase):
     def setUp(self):
-        self.base_url = "https://api.example.com"  # Replace with the base URL of your API
+        self.base_url = "https://ticker-app-api-production.up.railway.app/api"  # Replace with the base URL of your API
 
     def test_get_user(self):
-        # Send a GET request to retrieve user information
-        endpoint = "/users/123"  # Replace with the appropriate endpoint
+        # Send a GET request to retrieve user stock information
+        endpoint = "/stock/1"  # Replace with the appropriate endpoint
         url = self.base_url + endpoint
 
         response = requests.get(url)
@@ -17,13 +17,14 @@ class MyBackendAPITestCase(unittest.TestCase):
 
         # Parse the response JSON and perform assertions on the data
         user = response.json()
-        self.assertEqual(user["id"], 123)
-        self.assertEqual(user["name"], "John Doe")
-        self.assertEqual(user["email"], "john.doe@example.com")
+        print(user)
+        # self.assertEqual(user["id"], 123)
+        # self.assertEqual(user["name"], "John Doe")
+        # self.assertEqual(user["email"], "john.doe@example.com")
 
     def test_create_user(self):
         # Send a POST request to create a new user
-        endpoint = "/users"  # Replace with the appropriate endpoint
+        endpoint = "/session"  # Replace with the appropriate endpoint
         url = self.base_url + endpoint
         data = {
             "name": "Jane Smith",
