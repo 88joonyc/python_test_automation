@@ -5,22 +5,42 @@ class MyBackendAPITestCase(unittest.TestCase):
     def setUp(self):
         self.base_url = "https://ticker-app-api-production.up.railway.app/api"  # Replace with the base URL of your API
 
+    # def test_get_stock(self):
+    #     # Send a GET request to retrieve user stock information
+    #     endpoint = "/session/1"  # Replace with the appropriate endpoint
+    #     url = self.base_url + endpoint
+
+    #     response = requests.get(url)
+
+    #     # Check the response status code
+    #     self.assertEqual(response.status_code, 200)
+
+    #     # Parse the response JSON and perform assertions on the data
+    #     user = response.json()
+    #     print(len(user["stocks"]))
+    #     self.assertEqual(user["stocks"], 4)
+    #     # self.assertEqual(user["name"], "John Doe")
+    #     # self.assertEqual(user["email"], "john.doe@example.com")
+
     def test_get_user(self):
         # Send a GET request to retrieve user stock information
-        endpoint = "/stock/1"  # Replace with the appropriate endpoint
+        endpoint = "/session"  # Replace with the appropriate endpoint
         url = self.base_url + endpoint
+        data = {
+            "credential":"demo@demo.io",
+            "password":"password" ,
+        }
 
-        response = requests.get(url)
+        response = requests.post(url, json=data)
 
         # Check the response status code
         self.assertEqual(response.status_code, 200)
 
         # Parse the response JSON and perform assertions on the data
         user = response.json()
-        print(len(user["stocks"]))
-        self.assertEqual(user["stocks"], 4)
-        # self.assertEqual(user["name"], "John Doe")
-        # self.assertEqual(user["email"], "john.doe@example.com")
+        self.assertEqual(user["user"]["id"], 1)
+        self.assertEqual(user["user"]["fullName"], "Stan Bankman")
+        self.assertEqual(user["user"]["email"], "demo@demo.io")
 
     # def test_create_user(self):
     #     # Send a POST request to create a new user
